@@ -10,13 +10,13 @@ SESSION_COOKIE_NAME = 'login'
 # File Upload to var/uploads/
 UPLOAD_FOLDER = os.path.join(
     os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
-    'var', 'uploads'
+    'peers', 'static'
 )
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 
-# Database file is var/insta485.sqlite3
+# Database file is var/peersdb.sqlite3
 DATABASE_FILENAME = os.path.join(
     os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
-    'var', 'peers.sqlite3'
+    'var', 'peersdb.sqlite3'
 )

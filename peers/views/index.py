@@ -9,49 +9,59 @@ from flask import request
 from flask import session
 from flask import redirect
 from flask import url_for
-import insta485
+import pandas as pd
+import os
+from lifelines import KaplanMeierFitter
+import matplotlib.pyplot as plt
+import peers
 
 
 @peers.app.route('/', methods=['GET', 'POST'])
 def show_index():
     """Display / route."""
-    if 'username' not in session.keys():
-        # print('no keys!')
-        return redirect(url_for('.show_login'))
-    d_b = insta485.model.get_db()
-    cursor = d_b.cursor()
+    d_b = peers.model.get_db()
     context = {}
-    username = session['username']
     if request.method == 'POST':
-        feedback = request.get_json()
-        postid = feedback.get('postid')
-        if 'like' in feedback:  # the click is cliking a like
-            cursor.execute(
-                "INSERT INTO likes(owner, postid) VALUES(?,?)",
-                (username, postid)
-            )
-        elif 'unlike' in feedback:  # the click is clicking an unlike
-            cursor.execute(
-                "DELETE FROM likes WHERE owner=? AND postid=?",
-                (username, postid)
-            )
-            return ('', 204)
-        else:  # commenting on a post
-            comment = feedback.get('text')
-            cursor.execute(
-                "INSERT INTO comments(owner, postid, text) VALUES(?, ?, ?)",
-                (username, postid, comment)
-            )
-        return ('', 201)
-    # above is all the possible requests
-    # below is preparing the dictionary and rendering the page
-    context['logname'] = username
-    context['posts'] = []
-    posts = insta485.views.format.get_postid(cursor, username)
-    for post in posts:
-        context['posts'].append(
-            insta485.views.format.get_post(cursor, post['postid'], username)
-        )
-    # print(context)
-    # insta485.model.close_db(cursor)
+        feedback = request.form
+        if "kmplot" in feedback.keys():
+            diagcode = request.form.getlist('diagcode')
+            depression = request.form.getlist('depression')
+            opioid = request.form.getlist('opioid')
+            query = "SELECT duration FROM cases"
+            allcond = []
+            if len(diagcode)!=0 and len(diagcode)!=8:
+                diagcond = 'diagnosis IN '+ '(' + ','.join(diagcode) + ')'
+                allcond.append(diagcond)
+            if len(depression)==1:
+                if depression[0]=='Depression':
+                    depresscond = 'depression = 1'
+                else:
+                    depresscond = 'depression = 0'
+                allcond.append(depresscond)
+            if len(opioid)==1:
+                if opioid[0]=='Opioid':
+                    opioidcond = 'opioid = 1'
+                else:
+                    opioidcond = 'opioid = 0'
+                allcond.append(opioidcond)
+            if len(allcond)>0:
+                query += " WHERE " + ' AND '.join(allcond)
+            print(query)
+            df = pd.read_sql_query(query, d_b)
+            df['censor']=1
+    else:
+        df = pd.read_sql_query("SELECT duration FROM cases", d_b)
+        df['censor']=1
+    plt.figure(figsize=(3,4))
+    kmf = KaplanMeierFitter()
+    kmf.fit(df['duration'],df['censor'])
+    kmf.plot()
+    plt.xlabel("Disability Duration")
+    plt.ylabel("Return to Work Probability")
+    figure_file = os.path.join(
+        peers.app.config["UPLOAD_FOLDER"],
+        'kmplot.png'
+    )
+    print(figure_file)
+    plt.savefig(figure_file)
     return flask.render_template("index.html", **context)

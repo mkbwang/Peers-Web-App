@@ -1,2 +1,2 @@
-"""Insta485 view functions."""
-import insta485.views.index
+"""peers view functions."""
+from peers.views.index import show_index

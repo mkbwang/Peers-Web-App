@@ -4,7 +4,7 @@ conn = sqlite3.connect('var/peersdb.sqlite3')
 c = conn.cursor()
 diag_pool=['724.2','846','847','847.1','847.2','847.3','847.4','847.9']
 
-for j in range(100000):
+for j in range(2000):
     duration = np.random.randint(0,365)
     age = np.random.randint(18,70)
     diagnosis = diag_pool[np.random.randint(0,8)]

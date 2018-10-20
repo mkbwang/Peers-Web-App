@@ -61,35 +61,35 @@
 					<p>Set your search criteria, then generate the plot.</p>
 					<div class = "form">
                         <form action="#" method="post" enctype="multipart/form-data">
-                            <h3> Select Gender: </h3>
-                            <input type="checkbox" name="gender" value="male"/><input type="checkbox" name="gender" value="female"/>
+                            <!-- <h3> Select Gender: </h3>
+                            <input type="checkbox" name="gender" value="male"/>Male<input type="checkbox" name="gender" value="female"/>Female -->
                             <h3>Select backstrain codes: </h3><br>
                             <table>
                                 <tr>
-                                <td><input type="checkbox" name="diagcode" value="724.2"/></td>    
-                                <td><input type="checkbox" name="diagcode" value="846"/></td>
-                                <td><input type="checkbox" name="diagcode" value="847"/></td>
+                                <td><input type="checkbox" name="diagcode" value="724.2"/>724.2</td>    
+                                <td><input type="checkbox" name="diagcode" value="846"/>846 </td>
+                                <td><input type="checkbox" name="diagcode" value="847"/>847 </td>
                                 </tr>
                                 <tr>
-                                <td><input type="checkbox" name="diagcode" value="847.1"/></td>    
-                                <td><input type="checkbox" name="diagcode" value="847.2"/></td>
-                                <td><input type="checkbox" name="diagcode" value="847.3"/></td>
+                                <td><input type="checkbox" name="diagcode" value="847.1"/>847.1</td>    
+                                <td><input type="checkbox" name="diagcode" value="847.2"/>847.2</td>
+                                <td><input type="checkbox" name="diagcode" value="847.3"/>847.3</td>
                                 </tr>
                                 <tr>
-                                <td><input type="checkbox" name="diagcode" value="847.4"/></td>    
-                                <td><input type="checkbox" name="diagcode" value="847.9"/></td>
+                                <td><input type="checkbox" name="diagcode" value="847.4"/>847.4</td>    
+                                <td><input type="checkbox" name="diagcode" value="847.9"/>847.9</td>
                                 </tr>
                             </table>
                             <h3> Select population with/without depression: </h3>
-                            <input type="checkbox" name="depression" value="Depression"/><input type="checkbox" name="depression" value="No Depression"/>
+                            <input type="checkbox" name="depression" value="Depression"/>Depression <input type="checkbox" name="depression" value="No Depression"/>No Depression
                             <h3> Select population with/without opioids treatment: </h3>
-                            <input type="checkbox" name="opioid" value="Opioid"/><input type="checkbox" name="opioid" value="No Opioids"/>
+                            <input type="checkbox" name="opioid" value="Opioid"/>Opioid<input type="checkbox" name="opioid" value="No Opioids"/>No Opioid <br>
                             <input type="submit" name="kmplot" value="Generate Plot"/>
                         </form>
                         <p>
-                            <img src = "/uploads/kmplot.png"
+                            <img src = "{{url_for('static',filename='kmplot.png')}}"
                             alt ="Kaplan-Meier Plot"
-                            style = "clear: right; float: left; width: 800px;">
+                            height="300px" width="400px">
                         </p>
                     </div>
 				</article>
