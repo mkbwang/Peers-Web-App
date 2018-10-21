@@ -53,7 +53,10 @@
 		</div>	
 		<!-- Center Column -->
 		<div class="col-sm-6" >
-		
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <strong>Notice:</strong> Please disable your browser from caching before using this website, e.g. 
+                using <a href="https://chrome.google.com/webstore/detail/classic-cache-killer/kkmknnnjliniefekpicbaaobdnjjikfp?hl=en"> Cache Killer</a>
+			</div>
 			<!-- Articles -->
 			<div class="row">
 				<article class="col-xs-12">
@@ -61,8 +64,10 @@
 					<p>Set your search criteria, then generate the plot.</p>
 					<div class = "form">
                         <form action="#" method="post" enctype="multipart/form-data">
-                            <!-- <h3> Select Gender: </h3>
-                            <input type="checkbox" name="gender" value="male"/>Male<input type="checkbox" name="gender" value="female"/>Female -->
+                            <h3> Select Age Range: </h3>
+                            Min age:<input type="text" name="agemin" value="18"> Max age:<input type="text" name="agemax" value="70">
+                            <h3> Select Gender: </h3>
+                            <input type="checkbox" name="gender" value="male"/>Male<input type="checkbox" name="gender" value="female"/>Female
                             <h3>Select backstrain codes: </h3>
                             <table>
                                 <tr>
