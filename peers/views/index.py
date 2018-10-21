@@ -1,5 +1,5 @@
 """
-Insta485 index (main) view.
+Peers index (main) view.
 
 URLs include:
 /
@@ -27,8 +27,13 @@ def show_index():
             diagcode = request.form.getlist('diagcode')
             depression = request.form.getlist('depression')
             opioid = request.form.getlist('opioid')
+            gender = request.form.getlist('gender')
             query = "SELECT duration FROM cases"
             allcond = []
+            minage = request.form.get("agemin")
+            maxage = request.form.get("agemax")
+            agecond = "age BETWEEN "+minage+" AND "+maxage
+            allcond.append(agecond)
             if len(diagcode)!=0 and len(diagcode)!=8:
                 diagcond = 'diagnosis IN '+ '(' + ','.join(diagcode) + ')'
                 allcond.append(diagcond)
@@ -44,6 +49,12 @@ def show_index():
                 else:
                     opioidcond = 'opioid = 0'
                 allcond.append(opioidcond)
+            if len(gender)==1:
+                if gender[0]=='male':
+                    gendercond = 'gender = 0'
+                else:
+                    gendercond = 'gender = 1'
+                allcond.append(gendercond)
             if len(allcond)>0:
                 query += " WHERE " + ' AND '.join(allcond)
             print(query)
