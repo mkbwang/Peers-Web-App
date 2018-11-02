@@ -10,6 +10,7 @@ from flask import session
 from flask import redirect
 from flask import url_for
 import pandas as pd
+import numpy as np
 import os
 from lifelines import KaplanMeierFitter
 import matplotlib.pyplot as plt
@@ -20,7 +21,7 @@ import peers
 def show_index():
     """Display / route."""
     d_b = peers.model.get_db()
-    context = {}
+    context = {'rtwprob': '0'}
     if request.method == 'POST':
         feedback = request.form
         if "kmplot" in feedback.keys():
@@ -58,21 +59,38 @@ def show_index():
             if len(allcond)>0:
                 query += " WHERE " + ' AND '.join(allcond)
             print(query)
-            df = pd.read_sql_query(query, d_b)
-            df['censor']=1
+        else:
+            query = "SELECT duration FROM cases"
+            allcond=[]
+            age = feedback.get("age")
+            minage = int(age) - 5
+            maxage = int(age) + 5
+            agecond = "age BETWEEN "+str(minage)+" AND "+str(maxage)
+            diagcond = 'diagnosis IN (' + feedback.get("diagcode") + ")"
+            depresscond = 'depression = '+ feedback.get("depression")
+            opioidcond = 'opioid = '+ feedback.get("opioid")
+            gendercond = 'gender = '+ feedback.get("gender")
+            allcond = [agecond, diagcond, depresscond, opioidcond, gendercond]
+            query += " WHERE "+ " AND ".join(allcond)
+            print(query)
+        df = pd.read_sql_query(query, d_b)
+        df['censor']=1
     else:
         df = pd.read_sql_query("SELECT duration FROM cases", d_b)
         df['censor']=1
-    plt.figure(figsize=(3,4))
-    kmf = KaplanMeierFitter()
-    kmf.fit(df['duration'],df['censor'])
-    kmf.plot()
-    plt.xlabel("Disability Duration")
-    plt.ylabel("Return to Work Probability")
-    figure_file = os.path.join(
-        peers.app.config["UPLOAD_FOLDER"],
-        'kmplot.png'
-    )
-    print(figure_file)
-    plt.savefig(figure_file)
+    if request.method=="GET" or "kmplot" in request.form.keys():
+        plt.figure(figsize=(3,4))
+        kmf = KaplanMeierFitter()
+        kmf.fit(df['duration'],df['censor'])
+        kmf.plot()
+        plt.xlabel("Disability Duration")
+        plt.ylabel("Return to Work Probability")
+        figure_file = os.path.join(
+            peers.app.config["UPLOAD_FOLDER"],
+            'kmplot.png'
+        )
+        plt.savefig(figure_file)
+    else:
+        sublength = np.sum(df['duration'] < float(request.form.get("duration")))
+        context['rtwprob'] = str(sublength/len(df)*100)
     return flask.render_template("index.html", **context)
