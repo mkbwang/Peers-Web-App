@@ -11,3 +11,4 @@ node_modules/
 bundle.js
 cookies.txt
 starter_files/
+.vscode/
