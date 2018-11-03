@@ -59,22 +59,8 @@ def show_index():
             if len(allcond)>0:
                 query += " WHERE " + ' AND '.join(allcond)
             print(query)
-        else:
-            query = "SELECT duration FROM cases"
-            allcond=[]
-            age = feedback.get("age")
-            minage = int(age) - 5
-            maxage = int(age) + 5
-            agecond = "age BETWEEN "+str(minage)+" AND "+str(maxage)
-            diagcond = 'diagnosis IN (' + feedback.get("diagcode") + ")"
-            depresscond = 'depression = '+ feedback.get("depression")
-            opioidcond = 'opioid = '+ feedback.get("opioid")
-            gendercond = 'gender = '+ feedback.get("gender")
-            allcond = [agecond, diagcond, depresscond, opioidcond, gendercond]
-            query += " WHERE "+ " AND ".join(allcond)
-            print(query)
-        df = pd.read_sql_query(query, d_b)
-        df['censor']=1
+            df = pd.read_sql_query(query, d_b)
+            df['censor']=1
     else:
         df = pd.read_sql_query("SELECT duration FROM cases", d_b)
         df['censor']=1
