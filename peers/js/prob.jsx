@@ -27,6 +27,7 @@ class Prob extends React.Component{
         .catch(error => console.log(error));
     }
     handlesubmit(event){
+        console.log(this.props.url);
         event.preventDefault();
         fetch(this.props.url,{
             method:'post',
@@ -120,7 +121,9 @@ class Prob extends React.Component{
                         </select>
                         <h3>Disability Duration(days):</h3>
                         <input type="text" name="duration" value={this.state.duration} onChange={this.handleduration}/><br/>
-                        <input type="submit" name="probcalc" onSubmit={this.handlesubmit}/>
+                        <button onClick={this.handlesubmit}>
+                            Calculate Probability
+                        </button>
                     </form>
                     <p>Return to Work Probability: {this.state.rtwprob}%</p>
                     </div>
