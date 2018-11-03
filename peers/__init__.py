@@ -17,3 +17,4 @@ app.config.from_envvar('PEERS_SETTINGS', silent=True)
 # going to tell pylint and pycodestyle to ignore this coding style violation.
 import peers.views  # noqa: E402  pylint: disable=wrong-import-position
 import peers.model  # noqa: E402  pylint: disable=wrong-import-position
+import peers.api # noqa: E402  pylint: disable=wrong-import-position
