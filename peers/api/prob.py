@@ -25,5 +25,5 @@ def get_prob():
         query += " WHERE "+ " AND ".join(allcond)
         df = pd.read_sql_query(query, d_b)
         sublength = np.sum(df['duration'] < float(feedback["duration"]))
-        context['rtwprob'] = str(sublength/len(df)*100)
+        context['rtwprob'] = str(round(sublength/len(df)*100,2))
     return flask.jsonify(**context)
