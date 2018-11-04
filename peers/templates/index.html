@@ -61,46 +61,85 @@
 			<!-- Articles -->
 			<div id="kmplot">
 				<article class="col-xs-12">
-					<h2>Kaplan Meier Curve</h2>
+					<h2>Return-to-Work Probability Curve</h2>
 					<p>Set your search criteria, then generate the plot.</p>
 					<div class = "form">
                         <form action="#" method="post" enctype="multipart/form-data">
                             <h3> Select Age Range: </h3>
                             Min age:<input type="text" name="agemin" value="18"> Max age:<input type="text" name="agemax" value="70">
                             <h3> Select Gender: </h3>
-                            <input type="checkbox" name="gender" value="male"/>Male<input type="checkbox" name="gender" value="female"/>Female
+                            <label class="container">Male
+                                <input type="checkbox" name="gender" value="male"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Female
+                                <input type="checkbox" name="gender" value="female"/>
+                                <span class="checkmark"></span>
+                            </label>
                             <h3>Select backstrain codes: </h3>
-                            <table>
-                                <tr>
-                                <td><input type="checkbox" name="diagcode" value="724.2"/>724.2</td>    
-                                <td><input type="checkbox" name="diagcode" value="846"/>846 </td>
-                                <td><input type="checkbox" name="diagcode" value="847"/>847 </td>
-                                </tr>
-                                <tr>
-                                <td><input type="checkbox" name="diagcode" value="847.1"/>847.1</td>    
-                                <td><input type="checkbox" name="diagcode" value="847.2"/>847.2</td>
-                                <td><input type="checkbox" name="diagcode" value="847.3"/>847.3</td>
-                                </tr>
-                                <tr>
-                                <td><input type="checkbox" name="diagcode" value="847.4"/>847.4</td>    
-                                <td><input type="checkbox" name="diagcode" value="847.9"/>847.9</td>
-                                </tr>
-                            </table>
+                            <label class="container">724.2 Lumbago
+                                <input type="checkbox" name="diagcode" value="724.2"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">846 Sprain of lumbosacral
+                                <input type="checkbox" name="diagcode" value="846"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">847 Sprain of unspecified parts of back
+                                <input type="checkbox" name="diagcode" value="847"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">847.1 Sprain of thoracic region
+                                <input type="checkbox" name="diagcode" value="847.1"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">847.2 Sprain of lumbar region
+                                <input type="checkbox" name="diagcode" value="847.2"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">847.3 Sprain of sacrum
+                                <input type="checkbox" name="diagcode" value="847.3"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">847.4 Sprain of coccyx
+                                <input type="checkbox" name="diagcode" value="847.4"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">847.9 Sprain of unspecified site of back
+                                <input type="checkbox" name="diagcode" value="847.9"/>
+                                <span class="checkmark"></span>
+                            </label>
                             <h3> Select population with/without depression: </h3>
-                            <input type="checkbox" name="depression" value="Depression"/>Depression <input type="checkbox" name="depression" value="No Depression"/>No Depression
+                            <label class="container">Depression
+                                <input type="checkbox" name="depression" value="Depression"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">No Depression
+                                <input type="checkbox" name="depression" value="No Depression"/>
+                                <span class="checkmark"></span>
+                            </label>
                             <h3> Select population with/without opioids treatment: </h3>
-                            <input type="checkbox" name="opioid" value="Opioid"/>Opioid<input type="checkbox" name="opioid" value="No Opioids"/>No Opioid <br>
+                            <label class="container">Opioid
+                                <input type="checkbox" name="opioid" value="Opioid"/>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">No Opioid
+                                <input type="checkbox" name="opioid" value="No Opioids"/>
+                                <span class="checkmark"></span>
+                            </label>
                             <input type="submit" name="kmplot" value="Generate Plot"/>
                         </form>
                         <p>
                             <img src = "{{url_for('static',filename='kmplot.png')}}"
                             alt ="Kaplan-Meier Plot"
-                            height="300px" width="400px">
+                            height="360px" width="480px">
                         </p>
                     </div>
                 </article>
             </div>
+            
             <hr>
+
             <div id="probability">
                 loading...
 			</div>

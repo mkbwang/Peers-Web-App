@@ -87,7 +87,7 @@ class Prob extends React.Component{
         return(
         <div className="row">
         <article className="col-xs-12">
-            <h2>Return to Work Probability</h2>
+            <h2>Return to Work Case Probability</h2>
             <p>Set your search criteria, then get the probability of returning to work.</p>
             <div class = "form">
                 <form action="#" method="post" enctype="multipart/form-data">
@@ -121,11 +121,15 @@ class Prob extends React.Component{
                         </select>
                         <h3>Disability Duration(days):</h3>
                         <input type="text" name="duration" value={this.state.duration} onChange={this.handleduration}/><br/>
+                        <br/>
                         <button onClick={this.handlesubmit}>
                             Calculate Probability
                         </button>
                     </form>
-                    <p>Return to Work Probability: {this.state.rtwprob}%</p>
+                    <br/>
+                    
+                    <p>Return to Work Probability:<strong> {this.state.rtwprob}% </strong> </p>
+                    
                     </div>
         </article>
         </div>
