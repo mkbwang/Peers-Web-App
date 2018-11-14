@@ -30,3 +30,18 @@ Peers-Web-App/
 └── wsgi.py
 ```
 The `env` is the folder contains relevant programs to start a virtual python environment. The `gen_db.py` is a python file to generate mock data set that we are serving right now in this toy example. `node_modules` include REACT javascript libraries. `package.json` and `package-lock.json` are two files that configure how to install the javascript libraries. `peers` is the python web app object we are serving. `setup.py` configures the python packages to install in this virtual environment. `sql` contains the file to set up the SQLite database. `var` folder is where the database lies. `webpack.config.js` configures how to compile the ES6 style javascripts that I have written into raw javascript. `peers.ini` and `wsgi.py` are configuration files to deploy our web app on the DigitalOcean server.
+
+The `peers` folder structure is as follows:
+```
+peers
+├── api
+├── config.py
+├── __init__.py
+├── js
+├── model.py
+├── __pycache__
+├── static
+├── templates
+└── views
+```
+The `api` folder contains the python program that returns a json object upon request sent from the frontend javascript. `config.py`, `__init__.py` are configuration files of this web app. They defines the specific location where the web app reads in information from the backend database and where to store static files such as pictures. `js` include the ES6-style javascript files. `static` folder contains the static files(pictures, css and compiled raw javascript). `templates` folder include HTML web templates. `views` contain python file that renders the whole website with the HTML templates. 
