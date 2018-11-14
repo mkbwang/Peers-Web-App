@@ -45,5 +45,6 @@ peers
 └── views
 ```
 The `api` folder contains the python program that returns a json object upon request sent from the frontend javascript. `config.py`, `__init__.py` are configuration files of this web app. They defines the specific location where the web app reads in information from the backend database and where to store static files such as pictures. `js` include the ES6-style javascript files. `static` folder contains the static files(pictures, css and compiled raw javascript). `templates` folder include HTML web templates. `views` contain python file that renders the whole website with the HTML templates. 
-## Acknowledgement
-The technical skills used for this web app are learnt from University of Michigan [EECS 485 Web Databases and Information Systems](https://eecs485staff.github.io/eecs485.org/)
+## References
+* University of Michigan [EECS 485 Web Databases and Information Systems](https://eecs485staff.github.io/eecs485.org/)
+* How to Deploy a flask app on DigitalOcean([link](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04))
