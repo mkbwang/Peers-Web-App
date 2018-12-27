@@ -16,7 +16,15 @@
 
     <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
     <link href="{{url_for('static',filename='css/custom.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/jquery-ui.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-multiselect.css')}}">
 
+    <!-- javascripts -->
+    <script type="text/javascript" src="{{url_for('static',filename='js/jquery.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/jquery-ui.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap-multiselect.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/peersweb.js')}}"></script>
 </head>
 
 <body>
@@ -67,67 +75,40 @@
 					<div class = "form">
                         <form action="#" method="post" enctype="multipart/form-data">
                             <h3> Select Age Range: </h3>
-                            Min age:<input type="text" name="agemin" value="18"> Max age:<input type="text" name="agemax" value="70">
+                            <p>
+                                <label for="amount">Age range:</label>
+                                <input type="text" id="age1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            </p>
+                            <div id="age-range"> </div>
                             <h3> Select Gender: </h3>
-                            <label class="container">Male
-                                <input type="checkbox" name="gender" value="male"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Female
-                                <input type="checkbox" name="gender" value="female"/>
-                                <span class="checkmark"></span>
-                            </label>
+                            <select id="gender1" multiple="multiple">
+                                <option value="male" > Male </option>
+                                <option value="female" > Female </option>
+                            </select>
                             <h3>Select backstrain codes: </h3>
-                            <label class="container">724.2 Lumbago
-                                <input type="checkbox" name="diagcode" value="724.2"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">846 Sprain of lumbosacral
-                                <input type="checkbox" name="diagcode" value="846"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">847 Sprain of unspecified parts of back
-                                <input type="checkbox" name="diagcode" value="847"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">847.1 Sprain of thoracic region
-                                <input type="checkbox" name="diagcode" value="847.1"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">847.2 Sprain of lumbar region
-                                <input type="checkbox" name="diagcode" value="847.2"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">847.3 Sprain of sacrum
-                                <input type="checkbox" name="diagcode" value="847.3"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">847.4 Sprain of coccyx
-                                <input type="checkbox" name="diagcode" value="847.4"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">847.9 Sprain of unspecified site of back
-                                <input type="checkbox" name="diagcode" value="847.9"/>
-                                <span class="checkmark"></span>
-                            </label>
+                            <select id="diagnosis1" multiple="multiple">
+                                <optgroup label="All Selected">
+                                <option value="724.2" > Lumbago </option>
+                                <option value="846" > Sprain of Lumbosacral </option>
+                                <option value="847" > Sprain of unspecified parts of back </option>
+                                <option value="847.1" > Sprain of thoracic region </option>
+                                <option value="847.2" > Sprain of lumbar region </option>
+                                <option value="847.3" > Sprain of sacrum </option>
+                                <option value="847.4" > Sprain of coccyx </option>
+                                <option value="847.9" > Sprain of unspecified site of back </option>
+                                </optgroup>    
+                            </select>
                             <h3> Select population with/without depression: </h3>
-                            <label class="container">Depression
-                                <input type="checkbox" name="depression" value="Depression"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">No Depression
-                                <input type="checkbox" name="depression" value="No Depression"/>
-                                <span class="checkmark"></span>
-                            </label>
+                            <select id="depression1" multiple="multiple">
+                                <option value="Depression" > W/ Depression </option>
+                                <option value="No Depression" > W/O Depression </option>
+                            </select>
                             <h3> Select population with/without opioids treatment: </h3>
-                            <label class="container">Opioid
-                                <input type="checkbox" name="opioid" value="Opioid"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">No Opioid
-                                <input type="checkbox" name="opioid" value="No Opioids"/>
-                                <span class="checkmark"></span>
-                            </label>
+                            <select id="opioid1" multiple="multiple">
+                                <option value="Opioid" > W/ Opioid </option>
+                                <option value="No Opioids" > W/O Opioid </option>
+                            </select>
+                            <br>
                             <input type="submit" name="kmplot" value="Generate Plot"/>
                         </form>
                         <p>
