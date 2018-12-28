@@ -82,39 +82,37 @@
                             <div id="age-range"> </div>
                             <h3> Select Gender: </h3>
                             <select id="gender1" multiple="multiple">
-                                <option value="male" > Male </option>
-                                <option value="female" > Female </option>
+                                <option value="0" selected="selected" > Male </option>
+                                <option value="1" selected="selected" > Female </option>
                             </select>
                             <h3>Select backstrain codes: </h3>
                             <select id="diagnosis1" multiple="multiple">
                                 <optgroup label="All Selected">
-                                <option value="724.2" > Lumbago </option>
-                                <option value="846" > Sprain of Lumbosacral </option>
-                                <option value="847" > Sprain of unspecified parts of back </option>
-                                <option value="847.1" > Sprain of thoracic region </option>
-                                <option value="847.2" > Sprain of lumbar region </option>
-                                <option value="847.3" > Sprain of sacrum </option>
-                                <option value="847.4" > Sprain of coccyx </option>
-                                <option value="847.9" > Sprain of unspecified site of back </option>
+                                    <option value="724.2" selected="selected" > Lumbago </option>
+                                    <option value="846" selected="selected"> Sprain of Lumbosacral </option>
+                                    <option value="847" selected="selected"> Sprain of unspecified parts of back </option>
+                                    <option value="847.1" selected="selected"> Sprain of thoracic region </option>
+                                    <option value="847.2" selected="selected"> Sprain of lumbar region </option>
+                                    <option value="847.3" selected="selected"> Sprain of sacrum </option>
+                                    <option value="847.4" selected="selected"> Sprain of coccyx </option>
+                                    <option value="847.9" selected="selected"> Sprain of unspecified site of back </option>
                                 </optgroup>    
                             </select>
                             <h3> Select population with/without depression: </h3>
                             <select id="depression1" multiple="multiple">
-                                <option value="Depression" > W/ Depression </option>
-                                <option value="No Depression" > W/O Depression </option>
+                                <option value="1" selected="selected"> W/ Depression </option>
+                                <option value="0" selected="selected"> W/O Depression </option>
                             </select>
                             <h3> Select population with/without opioids treatment: </h3>
                             <select id="opioid1" multiple="multiple">
-                                <option value="Opioid" > W/ Opioid </option>
-                                <option value="No Opioids" > W/O Opioid </option>
+                                <option value="1" selected="selected"> W/ Opioid </option>
+                                <option value="0" selected="selected"> W/O Opioid </option>
                             </select>
                             <br>
-                            <input type="submit" name="kmplot" value="Generate Plot"/>
+                            <button id="kmsubmit" class="ui-button ui-widget ui-corner-all">Generate Plot</button>
                         </form>
                         <p>
-                            <img src = "{{url_for('static',filename='kmplot.png')}}"
-                            alt ="Kaplan-Meier Plot"
-                            height="360px" width="480px">
+                            <img id="kmplot" src = ""  height="360px" width="480px"/>
                         </p>
                     </div>
                 </article>

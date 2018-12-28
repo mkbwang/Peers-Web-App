@@ -16,4 +16,27 @@ $(document).ready( function() {
     });
     $('#depression1').multiselect();
     $('#opioid1').multiselect();
-} );
+    $('#kmsubmit').click(function(event){
+      event.preventDefault();
+      const agemin = $('#age-range').slider("values",0);
+      const agemax = $('#age-range').slider("values",1);
+      const gender = $('#gender1').val() || [];
+      const diagnosis = $('#diagnosis1').val() || [];
+      const depression = $('#depression1').val() || [];
+      const opioid = $('#opioid1').val() || [];
+      $.ajax({
+        type:"POST",
+        url:'/api/kmplot/',
+        contentType: 'application/json', 
+        data:JSON.stringify({minage: agemin, maxage: agemax,
+          gender: gender, diagcode: diagnosis, depression: depression, opioid: opioid})
+      })
+       .done(function(rawImage){
+          console.log(rawImage);
+          $('#kmplot').attr("src", "data:image/png;base64,"+rawImage);
+       })
+       .fail(function(){
+          alert('Picture loading failed!');
+       });
+    });
+});
