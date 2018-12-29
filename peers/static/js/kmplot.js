@@ -1,4 +1,5 @@
 $(document).ready( function() {
+    // Kmplot part
     $( "#age-range" ).slider({
       range: true,
       min: 18,

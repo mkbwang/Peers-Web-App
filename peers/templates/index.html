@@ -24,7 +24,8 @@
     <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static',filename='js/jquery-ui.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap-multiselect.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static',filename='js/peersweb.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/kmplot.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/probcalc.js')}}"></script>
 </head>
 
 <body>
@@ -63,10 +64,6 @@
 		</div>	
 		<!-- Center Column -->
 		<div class="col-sm-6" >
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <strong>Notice:</strong> Please disable your browser from caching before using this website, e.g. 
-                using <a href="https://chrome.google.com/webstore/detail/classic-cache-killer/kkmknnnjliniefekpicbaaobdnjjikfp?hl=en"> Cache Killer</a>
-			</div>
 			<!-- Articles -->
 			<div >
 				<article class="col-xs-12">
@@ -120,9 +117,63 @@
             
             <hr>
 
-            <div id="probability">
-                loading...
-			</div>
+            <div className="row">
+                <article className="col-xs-12">
+                    <h2>Return to Work Case Probability</h2>
+                    <p>Set your search criteria, then get the probability of returning to work.</p>
+                    <div class = "form">
+                            <h3> Input Patient Age: </h3>
+                            <p>
+                                <label for="amount">Age :</label>
+                                <input type="text" id="age2" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            </p>
+                            <div id="age-pick"> </div>
+                            <br/>
+                            
+                            <h3> Select Gender: </h3>
+                            <select id="gender2">
+                                <option value="0" >Male</option>
+                                <option value="1">Female</option>
+                            </select>
+
+                            <h3>Select backstrain codes: </h3>
+                            <select id="diagnosis2">
+                                <option value="724.2" >Lumbago</option>
+                                <option value="846">Sprain of Lumbosacral</option>
+                                <option value="847">Sprain of unspecified parts of back </option>
+                                <option value="847.1">Sprain of thoracic region </option>
+                                <option value="847.2">Sprain of lumbar region</option>
+                                <option value="847.3">Sprain of sacrum</option>
+                                <option value="847.4">Sprain of coccyx</option>
+                                <option value="847.9">Sprain of unspecified site of back</option>
+                            </select>
+
+                            <h3> Is the patient diagnosed with depression? </h3>
+                            <select id="depression2" >
+                                <option value="1" >Yes</option>
+                                <option value="0" >No</option>
+                            </select>
+                            
+                            <h3> Did your patient have opioid Treatment? </h3>
+                            <select id="opioid2" >
+                                <option value="1" >Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                            
+                            <h3>Disability Duration(days):</h3>
+                            <input type="text" id="duration"/><br/>
+                            <br/>
+                            <button id="probsubmit" class="ui-button ui-widget ui-corner-all">
+                                Calculate Probability
+                            </button>
+                        <br/>
+                        
+                        <label>Return to Work Probability:</label>
+                        <div id="outputprob">
+                        </div>
+                    </div>
+                </article>
+            </div>
 			<hr>
 		</div><!--/Center Column-->
 		<div class="col-sm-3" >
@@ -139,7 +190,6 @@
         	</div>
         </div>
 	</footer>
-    <script type="text/javascript" src="{{url_for('static', filename='js/bundle.js')}}"></script>
 </body>
 
 </html>
