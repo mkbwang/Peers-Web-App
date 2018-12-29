@@ -50,4 +50,4 @@ def get_kmplot():
     plt.savefig(strIO, format='png')
     strIO.seek(0)
     plotcode = base64.encodestring(strIO.read())
-    return plotcode, 200, {'Content-Type': 'text/plain'}
+    return plotcode.decode('utf-8'), 200, {'Content-Type': 'text/plain'}

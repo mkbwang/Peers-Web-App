@@ -32,7 +32,6 @@ $(document).ready( function() {
           gender: gender, diagcode: diagnosis, depression: depression, opioid: opioid})
       })
        .done(function(rawImage){
-          console.log(rawImage);
           $('#kmplot').attr("src", "data:image/png;base64,"+rawImage);
        })
        .fail(function(){
