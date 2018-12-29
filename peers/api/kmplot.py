@@ -15,7 +15,6 @@ def get_kmplot():
     d_b = peers.model.get_db()
     # we know that the request will always be a post request
     feedback = flask.request.get_json()
-    print(feedback)
     query = "SELECT duration FROM cases"
     allcond = []
     minage = str(feedback["minage"])
