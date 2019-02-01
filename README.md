@@ -6,7 +6,7 @@ This repository contains the code to generate a web app which offers treatment c
 
 *Note: The current version is a toy example. The figures and numerical results are generated from a mock dataset. This project is still at the beginning stage and the prototype you are playing with is for illustration purposes only.*
 ## Overview of the Prototype Solution
-This prototype consists of several parts: **backend database**, **backend server** and **frontend**. This solution is developed on a [DigitalOcean](https://www.digitalocean.com/) droplet with 50GB storage and 4GB memory, Ubuntu 16.04.4 operating system. The backend database is built with [**SQLite**](https://www.sqlite.org/index.html). The backend server is built up using [**flask**](http://flask.pocoo.org/) package of python. The front end is built by compiling [REACT.js](https://reactjs.org/) into raw javascript.
+This prototype consists of several parts: **backend database**, **backend server** and **frontend**. This solution is developed on a [DigitalOcean](https://www.digitalocean.com/) droplet with 50GB storage and 4GB memory, Ubuntu 16.04.4 operating system. The backend database is built with [**SQLite**](https://www.sqlite.org/index.html). The backend server is built up using [**flask**](http://flask.pocoo.org/) package of python. The front end is built upon jquery library.
 ## File Structure
 **The files you can find in this repository don't include all the files. There will be additional log files generated when you run the server, and the actual data will NEVER be on this repository because of privacy.**
 
